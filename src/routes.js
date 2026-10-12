@@ -65,6 +65,18 @@ router.get('/tasks', (req, res) => {
   res.json(result);
 });
 
+  // 任务详情：GET /api/tasks/:id
+  router.get('/tasks/:id', (req, res) => {
+    // 调用 getTask
+    const result = getTask(req.params.id);
+    if (result){
+      // 返回任务详情
+      res.json(result);
+    } else {
+      res.status(404).json({ message: '任务不存在' });
+    }
+  });
+
 // 更新任务：PUT /api/tasks/:id
 router.put('/tasks/:id', (req, res) => {
   try {
